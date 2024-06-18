@@ -1,5 +1,4 @@
 # GI-Hdiff Patcher: a tool for updating Genshin Impact properly
-**Author: Tom**
 
 If you update the game by simply copying all the *update files* and then replacing them in the game client directory, that's actually not the correct way. You should merge the `.pck.hdiff` update with the old `.pck` file and delete the obsolete files listed in `deletefiles.txt`.
 

@@ -4,21 +4,21 @@ If you update the game by simply copying all the *update files* and then replaci
 
 ## How to use?
 
-For example, you want to update the game from 4.6.0 to 4.7.0:
+For example, you want to update the game from 4.7.0 to 4.8.0:
 
-1. Make sure you have extracted all files from the `game_4.6.0_4.7.0_hdiff.zip` and `en-us_4.6.0_4.7.0_hdiff.zip`, then replace them in the `4.6.0` game client directory.
+1. Make sure you have extracted all files from the `game_4.7.0_4.8.0_hdiff.zip` and `en-us_4.7.0_4.8.0_hdiff.zip`, then replace them in the `4.7.0` game client directory.
 2. Place the following files in the same folder as `GenshinImpact.exe`:
    - `hdiffz.exe`
    - `hpatchz.exe`
    - `Start.bat`
-   - `Cleanup_4.6.0-4.7.0.txt`
-   - `AudioPatch_Common_4.6.0-4.7.0.txt`
-   - `AudioPatch_English_4.6.0-4.7.0.txt`
-   - `AudioPatch_Japanese_4.6.0-4.7.0.txt`
-   - `AudioPatch_Chinese_4.6.0-4.7.0.txt`
-   - `AudioPatch_Korean_4.6.0-4.7.0.txt`
+   - `Cleanup_4.7.0-4.8.0.txt`
+   - `AudioPatch_Common_4.7.0-4.8.0.txt`
+   - `AudioPatch_English_4.7.0-4.8.0.txt`
+   - `AudioPatch_Japanese_4.7.0-4.8.0.txt`
+   - `AudioPatch_Chinese_4.7.0-4.8.0.txt`
+   - `AudioPatch_Korean_4.7.0-4.8.0.txt`
 3. Run `Start.bat` and wait until the process finishes.
-4. Now, your game is updated to version `4.7.0`.
+4. Now, your game is updated to version `4.8.0`.
 
 ## Note
 
@@ -35,10 +35,5 @@ For example, you want to update the game from 4.6.0 to 4.7.0:
     -----------------------------
     = Banks0.pck (62.5 MB)      // new size after update
     ```
-- **Update version 2.7.0 - 4.7.0**
-  - Starting from version 2.6 to 2.7 until the current version 4.7, the developer switched to using hdiff for both game updates and audio voice packs.
-
-## Reference
-- [https://www.hoyolab.com/article/162549](https://www.hoyolab.com/article/162549)
-- [https://github.com/sisong/HDiffPatch/releases](https://github.com/sisong/HDiffPatch/releases)
-- [https://github.com/GamerYuan/GenshinPatcher](https://github.com/GamerYuan/GenshinPatcher)
+- **Update version 2.7.0 - 4.8.0**
+  - Starting from version 2.6 to 2.7 until the current version 4.8, the developer gi switched to using hdiff for both game updates and audio voice packs.

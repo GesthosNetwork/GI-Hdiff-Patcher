@@ -249,7 +249,7 @@ for /L %%i in (1,1,4) do (
 	)
 )
 
-for /F "usebackq delims=" %%i in ("!FilePath!Cleanup_Common_!oldVer!!oldVer!-!newVer!.txt") do (
+for /F "usebackq delims=" %%i in ("!FilePath!Cleanup_Common_!oldVer!-!newVer!.txt") do (
 		if exist "!FilePath!%%i" (
 			attrib -R "!FilePath!%%i"
 			del "!FilePath!%%i"

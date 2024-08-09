@@ -13,21 +13,21 @@ set "used_language="
 
 type nul > "%audio_lang_14%"
 
-if exist "GenshinImpact_Data\StreamingAssets\AudioAssets\Chinese" (
+if exist "GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Chinese" (
     set /p="Chinese" <nul >> "%audio_lang_14%"
     set "used_language=Chinese"
 )
-if exist "GenshinImpact_Data\StreamingAssets\AudioAssets\English(US)" (
+if exist "GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\English(US)" (
     if defined used_language echo. >> "%audio_lang_14%"
     set /p="English(US)" <nul >> "%audio_lang_14%"
     set "used_language=English(US)"
 )
-if exist "GenshinImpact_Data\StreamingAssets\AudioAssets\Korean" (
+if exist "GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Korean" (
     if defined used_language echo. >> "%audio_lang_14%"
     set /p="Korean" <nul >> "%audio_lang_14%"
     set "used_language=Korean"
 )
-if exist "GenshinImpact_Data\StreamingAssets\AudioAssets\Japanese" (
+if exist "GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Japanese" (
     if defined used_language echo. >> "%audio_lang_14%"
     set /p="Japanese" <nul >> "%audio_lang_14%"
     set "used_language=Japanese"

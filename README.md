@@ -1,0 +1,45 @@
+## GI-Hdiff Patcher: a tool for manually updating Genshin Impact properly
+
+If you update the game by simply copying all the *update files* and then replacing them in the game client directory, that's actually not the correct way. You should merge the `.pck.hdiff` update with the old `.pck` file and delete the obsolete files listed in `deletefiles.txt`.
+
+## How to use?
+
+For example, you want to update the game from 5.0.0 to 5.1.0:
+
+1. Place the following files in the same folder as `GenshinImpact.exe`:
+   - `hdiffz.exe`
+   - `hpatchz.exe`
+   - `7z.exe`
+   - `Start.bat`
+   - `Cleanup_5.0.0-5.1.0.txt`
+   - `AudioPatch_Common_5.0.0-5.1.0.txt`
+   - `AudioPatch_English_5.0.0-5.1.0.txt`
+   - `AudioPatch_Japanese_5.0.0-5.1.0.txt`
+   - `AudioPatch_Chinese_5.0.0-5.1.0.txt`
+   - `AudioPatch_Korean_5.0.0-5.1.0.txt`
+   - `game_5.0.0-5.1.0_hdiff.zip`
+   - `audio_en-us_5.0.0-5.1.0_hdiff.zip`
+
+2. Run `Start.bat` and wait until the process finishes.
+3. Now, your game is updated!
+
+## Note
+
+- **Update version 1.0.0 - 1.4.0**
+  - From version 1.0.0 to 1.4.0, the game updates include voice audio packs for all languages.
+- **Update version 1.5.0 - 2.4.0**
+  - Starting from version 1.4 to 1.5, they separated game updates from voice audio pack updates.
+- **Update version 2.5.0 & 2.6.0**
+  - From version 2.4 to 2.5, and 2.5 to 2.6, they started using hdiff for game updates. Audio voice packs still used the old update method (non-hdiff).
+- **Update version 2.7.0 - current version**
+  - Starting from version 2.6 to 2.7 until the current version, they switched to using hdiff for both game updates and audio voice packs.
+  
+- The overview of merging process:
+    ```
+    Banks0.pck (59.5 MB)        // before update
+    + Banks0.pck.hdiff (3.0 MB) // hdiff update
+    -----------------------------
+    = Banks0.pck (62.5 MB)      // new size after update
+	```
+
+<!-- I created this repository because I'm too lazy to update using the official launcher. -->

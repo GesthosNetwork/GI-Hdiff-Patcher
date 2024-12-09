@@ -1,7 +1,7 @@
 @echo off
 SetLocal EnableDelayedExpansion
 chcp 65001 >nul
-set "oldVer=1.2.0"
+set "oldVer=1.3.2"
 set "newVer=1.4.0"
 Title Cleanup obsolete files © 2024 GesthosNetwork
 

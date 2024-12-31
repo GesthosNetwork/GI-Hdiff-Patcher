@@ -1,10 +1,11 @@
 @echo off
 SetLocal EnableDelayedExpansion
 chcp 65001 >nul
-set "oldVer=4.6.0"
-set "newVer=4.7.0"
+set "oldVer=5.2.0"
+set "newVer=5.3.0"
 Title GI Hdiff Patcher © 2024 GesthosNetwork
 
+:Extract
 choice /C YN /M "Do you want to start extracting all ZIP files?"
 if errorlevel 2 echo Extraction skipped. & goto Check
 if not exist 7z.exe echo 7z.exe not found. & goto End
@@ -22,6 +23,10 @@ set "path1=GenshinImpact_Data\StreamingAssets\AudioAssets\Chinese"
 set "path2=GenshinImpact_Data\StreamingAssets\AudioAssets\English(US)"
 set "path3=GenshinImpact_Data\StreamingAssets\AudioAssets\Japanese"
 set "path4=GenshinImpact_Data\StreamingAssets\AudioAssets\Korean"
+
+set hdiff=0
+for %%i in (!path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
+if %hdiff%==0 (echo *.hdiff files not found. You must extract the ZIP files before proceeding. & goto Extract)
 
 if not exist "Audio_Chinese_pkg_version" rd /s /q !path1! 2>nul
 if not exist "Audio_English(US)_pkg_version" rd /s /q !path2! 2>nul
@@ -144,6 +149,7 @@ if "%PatchFinished%"=="True" (
     echo sub_channel=0
   ) > "config.ini"
 
-  rd /s /q "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
+  for %%f in ("StreamingAssets\Audio" "SDKCaches" "webCaches") do rd /s /q "GenshinImpact_Data\%%f" 2>nul
+  rd /s /q LauncherPlugins 2>nul
   del *.bat *.zip hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

@@ -72,7 +72,7 @@ for %%l in (Chinese,English,Japanese,Korean) do (
     if %%l==Japanese set checkFile="Audio_Japanese_pkg_version"
     if %%l==Korean set checkFile="Audio_Korean_pkg_version"
     if exist !checkFile! (
-        for %%f in (AudioPatch_%%l_!oldVer!-!newVer!.txt AudioPatch_Common_!oldVer!-!newVer!.txt hpatchz.exe hdiffz.exe) do (
+        for %%f in (AudioPatch_%%l_!oldVer!-!newVer!.txt AudioPatch_Common_!oldVer!-!newVer!.txt hpatchz.exe) do (
             if NOT exist %%~f (
                 echo "%%~f is missing."
                 set FileMissing=True
@@ -145,5 +145,5 @@ if "%PatchFinished%"=="True" (
   ) > "config.ini"
 
   rd /s /q "GenshinImpact_Data\StreamingAssets\Audio" "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
-  del *.bat *.zip hpatchz.exe hdiffz.exe 7z.exe *.dmp *.bak *.txt *.log
+  del *.bat *.zip hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

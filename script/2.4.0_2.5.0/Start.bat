@@ -66,7 +66,7 @@ for /F "usebackq delims=" %%i in ("GamePatch_!oldVer!-!newVer!.txt") do (
     )
 )
 
-for %%f in (GamePatch_!oldVer!-!newVer!.txt Cleanup_!oldVer!-!newVer!.txt hpatchz.exe hdiffz.exe) do (
+for %%f in (GamePatch_!oldVer!-!newVer!.txt Cleanup_!oldVer!-!newVer!.txt hpatchz.exe) do (
     if NOT exist %%~f (
         echo "%%~f is missing."
         set FileMissing=True
@@ -111,5 +111,5 @@ if "%PatchFinished%"=="True" (
   ) > "config.ini"
   
   rd /s /q "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
-  del *.bat *.zip hpatchz.exe hdiffz.exe 7z.exe *.dmp *.bak *.txt *.log
+  del *.bat *.zip hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

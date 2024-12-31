@@ -88,5 +88,5 @@ if "%CleanupFinished%"=="True" (
   ) > "config.ini"
 
   rd /s /q blob_storage "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
-  del 7z.exe hpatchz.exe hdiffz.exe *.bat *.zip *.dmp *.bak *.txt *.log
+  del 7z.exe hpatchz.exe *.bat *.zip *.dmp *.bak *.txt *.log
 )

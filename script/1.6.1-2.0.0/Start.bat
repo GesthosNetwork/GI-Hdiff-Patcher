@@ -5,13 +5,14 @@ set "oldVer=1.6.1"
 set "newVer=2.0.0"
 Title Cleanup obsolete files © 2024 GesthosNetwork
 
-choice /C YN /M "Do you want to start extracting all ZIP files?"
-if errorlevel 2 echo Extraction skipped. & goto Check
-if not exist 7z.exe echo 7z.exe not found. & goto End
-
-for %%f in (*.zip) do (
+for %%f in (*.zip *.7z) do (
     echo Extracting "%%f"... Please wait, do not close the console^^!
-    "7z.exe" x "%%f" -o"." -y & echo Done extracting "%%f" & echo.
+    if /I "%%~xf"==".zip" (
+        tar -xf "%%f" -C "." && echo Done extracting "%%f"
+    ) else if /I "%%~xf"==".7z" (
+        "7z.exe" x "%%f" -o"." -y && echo Done extracting "%%f"
+    )
+    echo.
 )
 
 :Check
@@ -90,5 +91,5 @@ if "%CleanupFinished%"=="True" (
   ) > "config.ini"
 
   rd /s /q blob_storage "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
-  del 7z.exe hpatchz.exe *.bat *.zip *.dmp *.bak *.txt *.log
+  del *.bat *.zip *.7z hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

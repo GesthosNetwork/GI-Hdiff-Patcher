@@ -8,23 +8,28 @@ Title GI Hdiff Patcher © 2025 GesthosNetwork
 :Extract
 choice /C YN /M "Do you want to start extracting all ZIP files?"
 if errorlevel 2 echo Extraction skipped. & goto Check
-
-for %%f in (*.zip) do (
+for %%f in (*.zip *.7z) do (
     echo Extracting "%%f"... Please wait, do not close the console^^!
-    tar -xf "%%f" -C "." & echo Done extracting "%%f" & echo.
+    if /I "%%~xf"==".zip" (
+        tar -xf "%%f" -C "." && echo Done extracting "%%f"
+    ) else if /I "%%~xf"==".7z" (
+        "7z.exe" x "%%f" -o"." -y && echo Done extracting "%%f"
+    )
+    echo.
 )
 
 :Check
 echo Checking if all necessary files to update the game from Patch !oldVer! to !newVer! are present...
 timeout /nobreak /t 3 >nul
 
+set "path0=GenshinImpact_Data\StreamingAssets\AudioAssets"
 set "path1=GenshinImpact_Data\StreamingAssets\AudioAssets\Chinese"
 set "path2=GenshinImpact_Data\StreamingAssets\AudioAssets\English(US)"
 set "path3=GenshinImpact_Data\StreamingAssets\AudioAssets\Japanese"
 set "path4=GenshinImpact_Data\StreamingAssets\AudioAssets\Korean"
 
 set hdiff=0
-for %%i in (!path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
+for %%i in (!path0!, !path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
 if %hdiff%==0 (echo *.hdiff files not found. You must extract the ZIP files before proceeding. & goto Extract)
 
 if not exist "Audio_Chinese_pkg_version" rd /s /q !path1! 2>nul
@@ -100,7 +105,11 @@ if "%FileMissing%"=="True" goto End
 choice /C YN /M "All necessary files are present. Apply patch now?"
 if errorlevel 2 goto End
 
-if exist "GenshinImpact_Data\Persistent\AudioAssets" robocopy "GenshinImpact_Data\Persistent\AudioAssets" "GenshinImpact_Data\StreamingAssets\AudioAssets" /e /copy:DAT /move
+for %%A in (AudioAssets VideoAssets) do (
+    if exist "GenshinImpact_Data\Persistent\%%A" (
+        robocopy "GenshinImpact_Data\Persistent\%%A" "GenshinImpact_Data\StreamingAssets\%%A" /e /copy:DAT /move
+    )
+)
 
 for %%l in (Chinese,English,Japanese,Korean) do (
     set "N=Audio_%%l_pkg_version"
@@ -143,12 +152,12 @@ if "%PatchFinished%"=="True" (
   (
     echo [General]
     echo channel=1
-    echo cps=mihoyo
+    echo cps=hoyoverse
     echo game_version=!newVer!
     echo sub_channel=0
   ) > "config.ini"
 
   for %%f in ("StreamingAssets\Audio" "SDKCaches" "webCaches") do rd /s /q "GenshinImpact_Data\%%f" 2>nul
   rd /s /q LauncherPlugins 2>nul
-  del *.bat *.zip hpatchz.exe *.dmp *.bak *.txt *.log
+  del *.bat *.zip *.7z hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

@@ -5,23 +5,33 @@ set "oldVer=3.1.0"
 set "newVer=3.2.0"
 Title GI Hdiff Patcher © 2024 GesthosNetwork
 
+:Extract
 choice /C YN /M "Do you want to start extracting all ZIP files?"
 if errorlevel 2 echo Extraction skipped. & goto Check
-if not exist 7z.exe echo 7z.exe not found. & goto End
 
-for %%f in (*.zip) do (
+for %%f in (*.zip *.7z) do (
     echo Extracting "%%f"... Please wait, do not close the console^^!
-    "7z.exe" x "%%f" -o"." -y & echo Done extracting "%%f" & echo.
+    if /I "%%~xf"==".zip" (
+        tar -xf "%%f" -C "." && echo Done extracting "%%f"
+    ) else if /I "%%~xf"==".7z" (
+        "7z.exe" x "%%f" -o"." -y && echo Done extracting "%%f"
+    )
+    echo.
 )
 
 :Check
 echo Checking if all necessary files to update the game from Patch !oldVer! to !newVer! are present...
 timeout /nobreak /t 3 >nul
 
+set "path0=GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows"
 set "path1=GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Chinese"
 set "path2=GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\English(US)"
 set "path3=GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Japanese"
 set "path4=GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Korean"
+
+set hdiff=0
+for %%i in (!path0!, !path1!, !path2!, !path3!, !path4!) do if exist "%%i\*.hdiff" set hdiff=1
+if %hdiff%==0 (echo *.hdiff files not found. You must extract the ZIP files before proceeding. & goto Extract)
 
 if not exist "Audio_Chinese_pkg_version" rd /s /q !path1! 2>nul
 if not exist "Audio_English(US)_pkg_version" rd /s /q !path2! 2>nul
@@ -139,11 +149,11 @@ if "%PatchFinished%"=="True" (
   (
     echo [General]
     echo channel=1
-    echo cps=mihoyo
+    echo cps=hoyoverse
     echo game_version=!newVer!
     echo sub_channel=0
   ) > "config.ini"
 
   rd /s /q "GenshinImpact_Data\SDKCaches" "GenshinImpact_Data\webCaches" 2>nul
-  del *.bat *.zip hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
+  del *.bat *.zip *.7z hpatchz.exe 7z.exe *.dmp *.bak *.txt *.log
 )

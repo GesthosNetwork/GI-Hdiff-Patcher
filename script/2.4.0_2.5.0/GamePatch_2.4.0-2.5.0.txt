@@ -95,3 +95,4 @@ GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Streamed6.p
 GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Streamed7.pck
 GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Streamed8.pck
 GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Streamed9.pck
+GenshinImpact_Data\StreamingAssets\Audio\GeneratedSoundBanks\Windows\Korean\VO_2.3_a_0.pck

@@ -2,22 +2,16 @@
 
 If you update the game by simply copying all the *update files* and then replacing them in the game client directory, that's actually not the correct way. You should merge the `.pck.hdiff` update with the old `.pck` file and delete the obsolete files listed in `deletefiles.txt`.
 
-## How to use?
+## How to use
 
-For example, you want to update the game from 5.2.0 to 5.3.0:
+For example, you want to update the game from 5.4.0 to 5.5.0:
 
 1. Place the following files in the same folder as `GenshinImpact.exe`:
+   - `AudioPatch_5.4.0-5.5.0.txt`
+   - `Cleanup_5.4.0-5.5.0.txt`
+   - `Start.bat`
    - `hpatchz.exe`
    - `7z.exe`
-   - `Start.bat`
-   - `Cleanup_5.2.0-5.3.0.txt`
-   - `AudioPatch_Common_5.2.0-5.3.0.txt`
-   - `AudioPatch_English_5.2.0-5.3.0.txt`
-   - `AudioPatch_Japanese_5.2.0-5.3.0.txt`
-   - `AudioPatch_Chinese_5.2.0-5.3.0.txt`
-   - `AudioPatch_Korean_5.2.0-5.3.0.txt`
-   - `game_5.2.0-5.3.0_hdiff.zip`
-   - `audio_en-us_5.2.0-5.3.0_hdiff.zip`
 
 2. Run `Start.bat` and wait until the process finishes.
 3. Now, your game is updated!
